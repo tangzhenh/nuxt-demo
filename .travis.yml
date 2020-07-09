@@ -10,4 +10,10 @@ cache:
 install:
   - npm install
 scripts:
-  - npm build
+  - npm run build
+after_success:
+  - rm -rf /Users/macbookpro/tangzhenh/project/F66/nuxt-product/.nuxt
+  - cp -rp /Users/macbookpro/tangzhenh/project/nuxt-demo/.nuxt /Users/macbookpro/tangzhenh/project/F66/nuxt-product
+  - cp -rp /Users/macbookpro/tangzhenh/project/nuxt-demo/nuxt.config.js /Users/macbookpro/tangzhenh/project/F66/nuxt-product
+  - pm2 delete nuxt-product
+  - pm2 start npm --name nuxt-product -- run start
