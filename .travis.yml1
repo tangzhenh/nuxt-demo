@@ -16,12 +16,6 @@ before_install:
     -in id_rsa.enc -out ~/.ssh/id_rsa -d
   - chmod 600 ~/.ssh/id_rsa
   - echo -e "Host $IP\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-deploy:
-  file:
-    - .env
-  api_key: $apikey
-  on:
-    repo: tangzhenh/nuxt-demo
 after_success:
   - scp /.nuxt root@182.92.214.223:/home/lib/nuxt-product
   - pm2 delete nuxt-product
