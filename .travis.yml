@@ -11,9 +11,12 @@ install:
   - npm install
 scripts:
   - npm run build
+before_install:
+  - openssl aes-256-cbc -K $encrypted_fa8c133d16af_key -iv $encrypted_fa8c133d16af_iv
+    -in id_rsa.enc -out ~\/.ssh/id_rsa -d
+  - chmod 600 ~/.ssh/id_rsa
+  - echo -e "Host $IP\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 after_success:
-  - rm -rf /Users/macbookpro/tangzhenh/project/F66/nuxt-product/.nuxt
-  - cp -rp /Users/macbookpro/tangzhenh/project/nuxt-demo/.nuxt /Users/macbookpro/tangzhenh/project/F66/nuxt-product
-  - cp -rp /Users/macbookpro/tangzhenh/project/nuxt-demo/nuxt.config.js /Users/macbookpro/tangzhenh/project/F66/nuxt-product
+  - scp /.nuxt root@182.92.214.223:/home/lib/nuxt-product
   - pm2 delete nuxt-product
   - pm2 start npm --name nuxt-product -- run start
