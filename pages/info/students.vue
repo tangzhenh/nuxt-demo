@@ -1,7 +1,7 @@
 <template>
   <div>
     <img style="width: 100px; height: 100px;" src="~/static/p2602596725.webp" alt />
-    <h1>学生列表11111</h1>
+    <h1>学生列表222222</h1>
     <table border="1">
       <thead>
         <tr>
