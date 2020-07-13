@@ -19,4 +19,3 @@ before_install:
 after_success:
   - scp /.nuxt root@182.92.214.223:/home/lib/nuxt-product
   - pm2 delete nuxt-product
-  - pm2 start npm --name nuxt-product -- run start
