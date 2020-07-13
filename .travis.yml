@@ -17,5 +17,6 @@ before_install:
   - chmod 600 ~/.ssh/id_rsa
   - echo -e "Host 182.92.214.223\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 after_success:
-  - scp .nuxt root@182.92.214.223:/home/lib/nuxt-product
-  - ssh root@182.92.214.223 'pm2 delete nuxt && pm2 start npm --name nuxt -- run start'
+  - tar -jcf .nuxt.tar.bz2 .nuxt
+  - scp .nuxt.tar.bz2 root@182.92.214.223:/home/lib/nuxt-product
+  - ssh root@182.92.214.223 'cd /home/lib/nuxt-product && rm -rf .nuxt'
